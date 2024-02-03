@@ -6,7 +6,12 @@
   "scripts": {
     "start": "node index.js",
     "dev": "node --watch index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:be": "rm index.js && cd ../../full_stack_open/notes_backend/ && cp -r ./index.js ../../dev/notes_app/",
+    "build:ui": "rm -rf dist && cd ../../full_stack_open/part1/ && npm run build && cp -r dist ../../dev/notes_app/",
+    "deploy:be": "npm run build:be && git add . && git commit -m backendbuild && git push",
+    "deploy:ui": "npm run build:ui && git add . && git commit -m uibuild && git push",
+    "build:be-windows": "Remove-Item -Force index.js && cd ../../full_stack_open/notes_backend/ && cp -r ./index.js ../../dev/notes_app/"
   },
   "keywords": [
     "express",

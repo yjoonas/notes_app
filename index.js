@@ -35,6 +35,17 @@ app.post('/api/notes', (req, res) => {
     console.log(note);
     res.json(note)
 })
+
+app.patch('/api/notes/:id', (req, res) => {
+    const id = Number(req.params.id)
+    const note = req.body;
+    console.log(note)
+    let noteToUpdate = notes.find(n => n.id === id)
+    noteToUpdate = {...noteToUpdate, ...note}
+    notes.forEach(n => n.id === id ? noteToUpdate : n);
+    res.json(noteToUpdate)
+})
+
 app.delete('/api/notes/:id', (req, res) => {
     const id = Number(req.params.id)
     notes = notes.filter( note => note.id !== id)
